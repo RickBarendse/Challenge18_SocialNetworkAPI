@@ -1,8 +1,8 @@
-const { Schema, model, default: mongoose } = require('mongoose');
+const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat');
-require('mongoose-type-email');
+//require('mongoose-type-email');
 
-const UserSchema = new Schema(
+const UsersSchema = new Schema(
     {
         username: {
             type: String,
@@ -12,16 +12,16 @@ const UserSchema = new Schema(
 
         },
         email: {
-            type: mongoose.SchemaTypes.Email,
+            type: String,
             required: true,
             unique: true,
         },
-        thoughts: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Thought'
-            }
-        ],
+        // thoughts: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'Thoughts'
+        //     }
+        // ],
         friends: [
             {
                 type: Schema.Types.ObjectId,
@@ -40,12 +40,10 @@ const UserSchema = new Schema(
 );
 
 // get total count of friends on retrieval
-UserSchema.virtual('friendsCount').get(function() {
-    return this.friends.reduce(
-        (total, friends) => total + friends.length + 1,
-        0
-    );
-});
+// UsersSchema.virtual('friendsCount').get(function() {
+//     return this.friends.length;
+// });
 
-const Users = model('Users' , UserSchema);
+const Users = model('Users', UsersSchema);
+
 module.exports = Users;

@@ -1,7 +1,19 @@
 {
+  "name": "SocialNetworkAPI",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
     "mongodb": "^4.6.0",
     "mongoose": "^6.3.5"
-  }
+  },
+  "devDependencies": {}
 }
