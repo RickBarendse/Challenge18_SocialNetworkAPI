@@ -16,12 +16,12 @@ const UsersSchema = new Schema(
             required: true,
             unique: true,
         },
-        // thoughts: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: 'Thoughts'
-        //     }
-        // ],
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thoughts'
+            }
+        ],
         friends: [
             {
                 type: Schema.Types.ObjectId,
@@ -40,9 +40,9 @@ const UsersSchema = new Schema(
 );
 
 // get total count of friends on retrieval
-// UsersSchema.virtual('friendsCount').get(function() {
-//     return this.friends.length;
-// });
+UsersSchema.virtual('friendsCount').get(function() {
+    return this.friends.length;
+});
 
 const Users = model('Users', UsersSchema);
 

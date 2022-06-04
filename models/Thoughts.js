@@ -20,7 +20,7 @@ const ReactionsSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,   
-            get: createdAtVal => dateFormat(createdAtVal)
+            //get: createdAtVal => dateFormat(createdAtVal)
         }
     },
     {
@@ -41,7 +41,7 @@ const ThoughtsSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: createdAtVal => dateFormat(createdAtVal)
+            //get: createdAtVal => dateFormat(createdAtVal)
         },
         username: {
             type: String,
@@ -60,7 +60,7 @@ const ThoughtsSchema = new Schema(
 );
 
 ThoughtsSchema.virtual('replyCount').get(function() {
-    return this.replies.length;
+    return this.reactions.length;
 });
 
 const Thoughts = model('Thoughts', ThoughtsSchema);
