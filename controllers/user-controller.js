@@ -37,7 +37,20 @@ const usersController = {
         Users.create(body)
             .then(dbUsersData => res.json(dbUsersData))
             .catch(err => res.json(err));
-        }   
+    },
+    
+    // update user by id
+    updateUsers({ params, body }, res) {
+        Users.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+            .then(dbUsersData => {
+                if (!dbUsersData) {
+                    res.status(404).json({ message: 'No user found with this id!' });
+                    return;
+                }
+                res.json(dbUsersData);
+            })
+            .catch(err => res.json(err));
+    },
 };
 
 module.exports = usersController;
