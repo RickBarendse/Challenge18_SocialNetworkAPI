@@ -70,7 +70,7 @@ const thoughtsController = {
             .catch(err => res.json(err));
     },
 
-    // update thoughts by Id
+    // update thought by ID
     updateThoughts({ params, body }, res) {
         Thoughts.findOneAndUpdate({ _id: params.id}, body, { new: true, runValidators: true })
             .then(dbThoughtsData => {
@@ -82,6 +82,13 @@ const thoughtsController = {
             })
             .catch(err => res.json(err));
     },
+
+    // delete thought by ID
+    deleteThoughts({ params }, res) {
+        Thoughts.findOneAndDelete({ _id: params.id })
+            .then(dbThoughtsData => res.json(dbThoughtsData))
+            .catch(err => res.json(err));
+    }
 };
 
 module.exports = thoughtsController;
