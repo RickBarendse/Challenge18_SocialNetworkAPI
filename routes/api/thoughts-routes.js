@@ -3,31 +3,38 @@ const {
     getAllThoughts,
     getSingleThoughts,
     addThoughts,
-    addReaction,
     updateThoughts,
-    deleteThoughts
+    deleteThoughts,
+    addReaction,
+    deleteReaction
 } = require('../../controllers/thoughts-controller');
 
-// add thought routes
+// get all thoughts route
 router
     .route('/')
     .get(getAllThoughts);
 
-
+// get get, update, and delete thoughts routes
 router
     .route('/:id')
     .get(getSingleThoughts) 
     .put(updateThoughts)
     .delete(deleteThoughts);
 
-// add users routes to thoughts route
+// add thoughts to user
 router
     .route('/:usersId')
     .post(addThoughts);
 
+// add reaction to thoughts
 router
-    .route('/:usersId/:thoughtsId')
-    .put(addReaction);
+    .route('/:thoughtsId/reactions')
+    .post(addReaction);
+
+// delete reaction from thoughts
+router
+    .route('/:thoughtsId/reactions/:reactionId')
+    .delete(deleteReaction);
 
 
 module.exports = router;

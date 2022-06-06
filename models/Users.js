@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat');
-//require('mongoose-type-email');
+const dateFormat = require('../utils/dateFormat');
+const validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
 
 const UsersSchema = new Schema(
     {
@@ -15,7 +18,10 @@ const UsersSchema = new Schema(
             type: String,
             required: true,
             unique: true,
+            validate: [validateEmail, 'Please provide a valid email address'],
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
         },
+
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
